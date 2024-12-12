@@ -2,19 +2,18 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { auth, signOut, signIn } from "@/auth";
-import { redirect } from "next/dist/server/api-utils";
 
 const Navbar = async () => {
    const session = await auth();
 
    return (
-      <div className="px-5 py-3 bg-white shadow-sm font-work-sans">
+      <div className="px-5 py-3 bg-neutral-900 shadow-sm font-work-sans text-white">
          <nav className="flex justify-between items-center">
             <Link href="https://www.google.com/">
-               <Image src="/logo.png" alt="logo" width={50} height={50} />
+               <Image className="rounded-lg" src="/logo.png" alt="logo" width={50} height={50} />
             </Link>
 
-            <div className="flex items-center space-x-5 text-black">
+            <div className="flex items-center space-x-5">
                {session && session?.user ? (
                   <>
                      <Link href="/startup/create">
