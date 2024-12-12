@@ -9,14 +9,14 @@ const config: Config = {
         "./sanity/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
-      //extending the themes so that we can provide specific variables to use later in code
+		 //extending the themes so that we can provide specific variables to use later in code
         extend: {
             screens: {
-                xs: "475px",//ex: xs-max-width
+                xs: "475px", //ex: xs-max-width
             },
             colors: {
                 primary: {
-                    "100": "#FFE8F0",//text-[#FFE8F0] but now we will use: text-100
+                    "100": "#FFE8F0", //text-[#FFE8F0] but now we will use: text-100
                     DEFAULT: "#EE2B69",
                 },
                 secondary: "#FBE843",
