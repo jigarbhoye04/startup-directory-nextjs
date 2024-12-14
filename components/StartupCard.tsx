@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+    //destrcuturing the post object
    const {
       author: { _id: authorId, name },
       _createdAt,
