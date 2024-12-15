@@ -3,6 +3,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+
+//custom css for easymde editor (specially for the pitch editor)
+import 'easymde/dist/easymde.min.css';
+
 // Existing fonts
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
