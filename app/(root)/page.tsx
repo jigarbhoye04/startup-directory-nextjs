@@ -1,5 +1,7 @@
+import { client } from "@/sanity/lib/client";
 import SearchForm from "../../components/SearchForm";
-import StartupCard from "../../components/StartupCard";
+import StartupCard, { StartupTypeCard } from "../../components/StartupCard";
+import { STARTUPS_QUERIY } from "@/sanity/lib/queries";
 
 export default async function Home({
    searchParams,
@@ -7,33 +9,11 @@ export default async function Home({
    searchParams: Promise<{ query?: string }>;
 }) {
    const query = (await searchParams).query;
+   const posts = await client.fetch(STARTUPS_QUERIY);
+   //
 
-   const posts = [
-      {
-         _createdAt: "2021-01-11T00:00:00Z",
-         // _createdAt: new Date().toISOString(),
-         views: 55,
-         author: { _id: 1, name:"JIGX" },
-         _id: 1,
-         description: "A platform for connecting with entreprenuers",
-         image: "https://images.unsplash.com/photo-1638437447465-033e33537dab?q=80&w=2831&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-         category: "Tech",
-         title: "Startup Connect",
-      },
-      {
-         _createdAt: "2021-09-01T00:00:00Z",
-         views: 55,
-         author: { _id: 2 },
-         _id: 2,
-         description: "A TeslaBot",
-         image: "https://cdn.pixabay.com/photo/2022/11/28/21/13/leaf-7623202_1280.jpg",
-         category: "Tech",
-         title: "TeslaBot",
-      },
-   ];
-   // console.log("What is this --server or client?");
    return (
-      <>
+      <> 
          {/* Hero Section */}
          <section className="pink_container">
             <h1 className="heading">
@@ -58,7 +38,7 @@ export default async function Home({
             <ul className="mt-7 card_grid">
                {/* map posts */}
                {posts?.length > 0 ? (
-                  posts.map((post: StartupCardType, index: number) => (
+                  posts.map((post: StartupTypeCard, index: number) => (
                      <StartupCard key={post?.id} post={post} />
                   ))
                ) : (
