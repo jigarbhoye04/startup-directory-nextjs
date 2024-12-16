@@ -1,22 +1,11 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 
 //custom css for easymde editor (specially for the pitch editor)
 import 'easymde/dist/easymde.min.css';
-
-// Existing fonts
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 
 //New Fonts
@@ -86,7 +75,14 @@ export default function RootLayout({
       <body
         className={workSans.variable}
       >
-        {children}
+        <ThemeProvider
+          attribute={"class"}
+          defaultTheme="system"
+          enableSystem
+          storageKey="theme"
+          disableTransitionOnChange>
+             {children}
+          </ThemeProvider>
       </body>
     </html>
   );

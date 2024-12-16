@@ -39,7 +39,7 @@ export default async function Home({
                {/* map posts */}
                {posts?.length > 0 ? (
                   posts.map((post: StartupTypeCard, index: number) => (
-                     <StartupCard key={post?.id} post={post} />
+                     <StartupCard key={post?._id} post={post} />
                   ))
                ) : (
                   <p>No startups found</p>

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { auth, signOut, signIn } from "@/auth";
+import { ModeToggle } from "./toggle-mode";
 
 const Navbar = async () => {
    const session = await auth();
@@ -14,6 +15,7 @@ const Navbar = async () => {
             </Link>
 
             <div className="flex items-center space-x-5">
+               <ModeToggle />
                {session && session?.user ? (
                   <>
                      <Link href="/startup/create">
@@ -31,7 +33,7 @@ const Navbar = async () => {
                      </form>
 
                      {/* Dynamically links to user session */}
-                     <Link href={`/user/${session?.id}`}>
+                     <Link href={`/user/${session?.user?.id}`}>
                         <span>{session?.user?.name}</span>
                      </Link>
                   </>

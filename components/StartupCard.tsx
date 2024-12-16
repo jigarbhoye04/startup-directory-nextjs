@@ -47,7 +47,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
                </div>
                <Link href={`/user/${author?._id}`}>
                   <Image
-                     src="https://plachold.co/48x48"
+                     //image from public folder
+                     src="/profile.png"
                      alt="profile"
                      width={48}
                      height={48}
