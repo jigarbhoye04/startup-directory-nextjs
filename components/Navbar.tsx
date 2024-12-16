@@ -10,12 +10,12 @@ const Navbar = async () => {
    return (
       <div className="px-5 py-3 bg-neutral-900 shadow-sm font-work-sans text-white">
          <nav className="flex justify-between items-center">
-            <Link href="https://www.google.com/">
+            <Link href="/">
                <Image className="rounded-lg" src="/logo.png" alt="logo" width={50} height={50} />
             </Link>
 
             <div className="flex items-center space-x-5">
-               <ModeToggle />
+               {/* <ModeToggle /> */}
                {session && session?.user ? (
                   <>
                      <Link href="/startup/create">

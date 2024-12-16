@@ -47,8 +47,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
                </div>
                <Link href={`/user/${author?._id}`}>
                   <Image
-                     //image from public folder
-                     src="/profile.png"
+                     src="https://i.pinimg.com/736x/8d/16/90/8d16902ae35c1e982c2990ff85fa11fb.jpg"
                      alt="profile"
                      width={48}
                      height={48}
