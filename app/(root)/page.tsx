@@ -1,7 +1,8 @@
-import { client } from "@/sanity/lib/client";
+// import { client } from "@/sanity/lib/client";
 import SearchForm from "../../components/SearchForm";
 import StartupCard, { StartupTypeCard } from "../../components/StartupCard";
 import { STARTUPS_QUERIY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function Home({
    searchParams,
@@ -9,8 +10,10 @@ export default async function Home({
    searchParams: Promise<{ query?: string }>;
 }) {
    const query = (await searchParams).query;
-   const posts = await client.fetch(STARTUPS_QUERIY);
-   //
+   // const posts = await client.fetch(STARTUPS_QUERIY);
+   const { data: posts } = await sanityFetch({query: STARTUPS_QUERIY});
+   //this is a promise, so we need to await it to get the data immediately
+   //revalidates data whenever the data changes
 
    return (
       <> 
@@ -46,6 +49,8 @@ export default async function Home({
                )}
             </ul>
          </section>
+         <SanityLive />
+         {/* this will keep the content updated */}
 
          {/* `` is called a template string  */}
       </>
