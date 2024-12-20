@@ -1,36 +1,149 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pitch Perfect - Startup Pitch Platform
+
+## Description
+
+**Pitch Perfect** is a platform that allows entrepreneurs to pitch their startups, connect with other entrepreneurs, submit ideas, vote on pitches, and participate in virtual competitions. It provides a space for startups to gain visibility and for investors to discover new opportunities.
+
+The application is built with **Next.js** using the App Router and integrates with **Sanity.io** for content management. It uses **TypeScript** for type safety and **Tailwind CSS** for styling.
+
+## Features
+
+- **User Authentication**: Secure login and profile management.
+- **Startup Submission**: Submit startup pitches with markdown support.
+- **Search and Filter**: Search for startups by name or category.
+- **Live Updates**: Real-time content updates using Sanity's live content API.
+- **Responsive Design**: Optimized for various screen sizes.
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/) 15.1.0
+- [React](https://reactjs.org/) 19
+- [TypeScript](https://www.typescriptlang.org/) 5
+- [Sanity.io](https://www.sanity.io/) for CMS
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [EasyMDE](https://github.com/Ionaru/easy-markdown-editor) for markdown editing
+- [Lucide React](https://lucide.dev/) for icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Node.js](https://nodejs.org/) >= 18
+- [npm](https://www.npmjs.com/) >= 8
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/pitch-perfect.git
+   cd pitch-perfect
 
-## Learn More
+2. **Install dependencies**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Setup Environment Variables**:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   Create a `.env.local` file in the root directory and add the following:
 
-## Deploy on Vercel
+   ```bash
+    AUTH_SECRET="" 
+    AUTH_GITHUB_ID=""
+    AUTH_GITHUB_SECRET=""
+    NEXT_PUBLIC_SANITY_PROJECT_ID=""
+    NEXT_PUBLIC_SANITY_DATASET=""
+    NEXT_PUBLIC_SANITY_API_VERSION=""
+   ```
+    Replace `env variable` with your actual Data.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Running the Application:**
+
+   - **Development Mode:**
+
+     ```bash
+     npm run dev
+     ```
+
+     Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+   - **Production Mode:**
+     - Build the application:
+
+       ```bash
+       npm run build
+       ```
+
+     - Start the production server:
+
+       ```bash
+       npm start
+       ```
+
+5. **Project Structure:**
+
+   - `app/`: Next.js App Router pages and layouts.
+   - `components/`: Reusable UI components.
+   - `sanity/`: Sanity schema definitions and configuration.
+   - `public/`: Static assets.
+   - `styles/`: Global CSS files.
+   - `utils/`: Utility functions and helpers.
+
+6. **Scripts:**
+
+   - `dev`: Starts the development server.
+   - `build`: Builds the application for production.
+   - `start`: Runs the production server.
+   - `lint`: Runs ESLint checks.
+   - `sanity`: Starts the Sanity Studio.
+   - `typegen`: Generates TypeScript types from Sanity schemas.
+
+7. **Dependencies:**
+
+   Key dependencies used in this project:
+
+   - **Next.js**: Framework for server-rendered React applications.
+   - **Sanity.io**: Headless CMS for content management.
+   - **Tailwind CSS**: Utility-first CSS framework.
+   - **EasyMDE**: Markdown editor component.
+   - **Lucide React**: Icon library.
+   - **ESLint**: Linting utility for JavaScript and TypeScript.
+   - **TypeScript**: Superset of JavaScript for static type checking.
+
+8. **Contributing:**
+
+   Contributions are welcome! Please follow these steps:
+
+   1. Fork the repository.
+   2. Create a new branch:
+
+      ```bash
+      git checkout -b feature/your-feature-name
+      ```
+
+   3. Make your changes and commit them:
+
+      ```bash
+      git commit -m 'Add some feature'
+      ```
+
+   4. Push to the branch:
+
+      ```bash
+      git push origin feature/your-feature-name
+      ```
+
+   5. Open a pull request.
+
+9. **License:**
+
+   This project is licensed under the MIT License.
+
+10. **Ref:**
+
+    - [Next.js Documentation](https://nextjs.org/docs)
+    - [Sanity.io Documentation](https://www.sanity.io/docs)
+    - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+    - [EasyMDE Documentation](https://github.com/Ionaru/easy-markdown-editor)
