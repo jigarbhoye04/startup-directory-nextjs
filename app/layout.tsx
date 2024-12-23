@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 //custom css for easymde editor (specially for the pitch editor)
 import 'easymde/dist/easymde.min.css';
+import { Toaster } from "@/components/ui/toaster";
 
 
 //New Fonts
@@ -83,6 +84,7 @@ export default function RootLayout({
              {children}
           </ThemeProvider> */}
           {children}
+          <Toaster />
       </body>
     </html>
   );
