@@ -48,7 +48,7 @@ const Navbar = async () => {
                      </form>
 
                      {/* Dynamically links to user session */}
-                     <Link href={`/user/${session?.user?.id}`}>
+                     <Link href={`/user/${session?.id}`}>
                         {/* <span>{session?.user?.name}</span> */}
                         <Avatar className="size-10">
                            <AvatarImage
