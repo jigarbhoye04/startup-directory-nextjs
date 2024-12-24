@@ -1,10 +1,11 @@
 import React from "react";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Author, Startup } from "@/sanity/types";
+import { Skeleton } from "./ui/skeleton";
 
 
 //Omit: The Omit utility type is used to exclude a property from another type.
@@ -47,8 +48,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
                </div>
                <Link href={`/user/${author?._id}`}>
                   <Image
-                     src="https://i.pinimg.com/736x/8d/16/90/8d16902ae35c1e982c2990ff85fa11fb.jpg"
-                     alt="profile"
+                     src={author?.image || "/person.png"}
+                     alt={author?.name || "author"}
                      width={48}
                      height={48}
                      className="rounded-full"
@@ -77,5 +78,15 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
       </>
    );
 };
+
+export const SkeletonStartupCard = () => (
+   <>
+      {[0,1,2,3,4,5,6,7].map((index: number) => (
+         <li key={cn('skeleton',index)}>
+            <Skeleton className="startup-card_skeleton"/>
+         </li>
+      ))}
+   </>
+)
 
 export default StartupCard;

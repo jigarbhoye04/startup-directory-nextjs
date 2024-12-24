@@ -92,10 +92,10 @@
     .text-16-medium {
         @apply font-medium text-[16px] text-black;
     }
-
+/* 
     .text-14-normal {
-        @apply font-normal text-sm text-white-100/80;
-    }
+        @apply font-normal text-sm text-white-100;
+    } */
 
     .pink_container {
         @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
