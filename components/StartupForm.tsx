@@ -9,14 +9,15 @@ import { SendIcon } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import z from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/router";
+import { createPitch } from "@/lib/actions";
+import { useRouter } from "next/navigation";
 
 const StartupForm = () => {
    const [errors, setErrors] = useState<Record<string, string>>({});
    //Record - A generic type that represents an object with string keys and the given type.
 
    const toast = useToast();
-//    const router = useRouter();
+   const router = useRouter();
    const [pitch, setPitch] = useState("");
 
    const handleSubmit = async (prevState: any, formData: FormData) => {
@@ -32,22 +33,23 @@ const StartupForm = () => {
          await formSchema.parseAsync(formValues);
          console.log(formValues);
 
-         //createIdea is a function that sends the form data to the server - a new mutation function
+         //createPitch is a function that sends the form data to the server - a new mutation function
 
-         //  const result = await createIdea(prevState, formData, pitch);
-         //  console.log(result);
-        //  if (result.status === "SUCCESS") {
-        //     toast.toast({
-        //        title: "Success",
-        //        description: "Your startup has been submitted successfully",
-        //     });
+         const result = (await createPitch(prevState, formData, pitch)) as {
+            status: string;
+            id: string;
+         };
+         if (result.status === "SUCCESS") {
+            toast.toast({
+               title: "Success",
+               description: "Your startup has been submitted successfully",
+            });
 
-        //     //redirect to the startup page
-        //     router.push("/startup/${result.id}");
-        //  }
+            //redirect to the startup page
+            router.push("/startup/${result._id}");
+         }
 
-        //  return result;
-
+         return result;
       } catch (error) {
          if (error instanceof z.ZodError) {
             const fieldErrors = error.flatten().fieldErrors;
@@ -196,9 +198,8 @@ const StartupForm = () => {
 
 export default StartupForm;
 
-
 //learned about zod and how to use it to validate form data
 //useActionState is a custom hook that manages form state and submission
-//useToast is a custom hook that shows toast notifications 
+//useToast is a custom hook that shows toast notifications
 //useRouter is a hook that provides access to the router object
 //MDEditor is a markdown editor component
