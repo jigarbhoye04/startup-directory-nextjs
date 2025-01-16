@@ -23,24 +23,22 @@ const md = markdownit();
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
    const id = (await params).id;
-   //    console.log(id);
-
 
    //this was sequential fetching making two requests one after another
    //but we can make them parallel by using Promise.all
 
 
-   // const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
+   const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
    // const { select: editorPosts } = await client.fetch(PLAYLIST_BY_SLUG_QUERY, {
    //    slug: "editor-s-picks",
    // });
 
 
    //parallel fetching
-   const [post, { select: editorPosts }] = await Promise.all([
-      client.fetch(STARTUP_BY_ID_QUERY, { id }),
-      client.fetch(PLAYLIST_BY_SLUG_QUERY, { slug: "editor-s-picks" }),
-   ]);
+   // const [post, { select: editorPosts }] = await Promise.all([
+   //    client.fetch(STARTUP_BY_ID_QUERY, { id }),
+   //    client.fetch(PLAYLIST_BY_SLUG_QUERY, { slug: "editor-s-picks" }),
+   // ]);
 
 
 
@@ -68,9 +66,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                      className="flex gap-2 items-center mb-3"
                   >
                      <Image
-                        // src={post.author.image}
-                        // temporary
-                        src="https://archive.org/download/discordprofilepictures/discordblue.png"
+                        src={post.author.image} 
                         alt="avatar"
                         width={64}
                         height={64}
@@ -102,7 +98,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
             <hr className="divider" />
 
-            {/* Editor's Choice Startups Section Below */}
+            {/* Editor's Choice Startups Section Below 
             {editorPosts?.length > 0 && (
                <div className="max-w-4xl mx-auto">
                   <p className="text-30-semibold">Editor's Picks</p>
@@ -113,6 +109,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                   </ul>
                </div>
             )}
+            */}
 
             <Suspense fallback={<Skeleton className="view-skeleton" />}>
                <View id={id} />

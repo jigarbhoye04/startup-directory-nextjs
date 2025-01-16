@@ -21,14 +21,12 @@ export const STARTUP_BY_ID_QUERY = defineQuery(`
   title,
   slug,
   _createdAt,
-    author -> {
-      _id,name,username,bio
-    },
+  author->{_id,name,username,slug,image,bio},
   views,
   description,
   category,
   image,
-    pitch
+  pitch
 }`);
 
 export const STARTUP_VIEWS_QUERY = defineQuery(
