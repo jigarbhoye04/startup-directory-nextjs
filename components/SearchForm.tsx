@@ -19,7 +19,7 @@
             <div className="flex gap-2">
                {query && <SearchFormReset />}
                <button type="submit" className="search-btn text-white">
-                  <Search size={24} />
+                  <Search size={16} />
                </button>
             </div>
          </Form>

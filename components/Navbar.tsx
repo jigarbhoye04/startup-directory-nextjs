@@ -10,8 +10,9 @@ const Navbar = async () => {
    const session = await auth();
 
    return (
-      <div className="px-5 py-3 bg-neutral-900 shadow-sm font-work-sans text-white">
-         <nav className="flex justify-between items-center">
+      <div className="flex fixed w-full px-5 py-3 bg-neutral-900 shadow-sm font-work-sans text-white z-40 justify-between items-center">
+         <nav className="flex justify-between items-center w-full">
+            {/* Logo on the left */}
             <Link href="/">
                <div className="flex items-center space-x-2">
                   <Image
@@ -21,12 +22,11 @@ const Navbar = async () => {
                      width={200}
                      height={80}
                   />
-                  {/* <span className="text-2xl">Pitch Perfect</span> */}
                </div>
             </Link>
 
-            <div className="flex items-center space-x-5">
-               {/* <ModeToggle /> */}
+            {/* Everything aligned to the right */}
+            <div className="flex items-center space-x-5 ml-auto">
                {session && session?.user ? (
                   <>
                      <Link href="/startup/create">
@@ -37,8 +37,6 @@ const Navbar = async () => {
                         action={async () => {
                            "use server";
                            await signOut({ redirectTo: "/" });
-                           //should be like : await signOut(options?: { redirectTo: "/" });
-                           //but idk why its like this (still works so.. :)  )
                         }}
                      >
                         <button type="submit">
@@ -47,9 +45,7 @@ const Navbar = async () => {
                         </button>
                      </form>
 
-                     {/* Dynamically links to user session */}
                      <Link href={`/user/${session?.id}`}>
-                        {/* <span>{session?.user?.name}</span> */}
                         <Avatar className="size-10">
                            <AvatarImage
                               src={session?.user?.image}

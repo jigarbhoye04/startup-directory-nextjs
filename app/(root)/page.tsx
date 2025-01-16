@@ -25,6 +25,10 @@ export default async function Home({
    return (
       <>
          {/* Hero Section */}
+         <div className="fixed top-0 left-0 right-0 b-gray-100 flex justify-center items-center z-40">
+            <SearchForm query={query} />
+         </div>
+
          <section className="pink_container">
             <h1 className="heading">
                Pitch your startup! <br /> Connect with entreprenuers
@@ -34,8 +38,6 @@ export default async function Home({
                Submit Ideas, Vote on Pitches, and Get Noticed in Virtual
                Competitions.
             </p>
-
-            <SearchForm query={query} />
          </section>
 
          {/* Startup Section */}
