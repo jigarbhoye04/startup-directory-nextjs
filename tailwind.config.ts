@@ -1,13 +1,15 @@
+/** @type {import('tailwindcss').Config} */
 import type {Config} from "tailwindcss";
 
 const config: Config = {
-    darkMode: ["class"],
+    darkMode: ["class", "dark"],
     content: [
         "./pages/**/*.{js,ts,jsx,tsx,mdx}",
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
         "./sanity/**/*.{js,ts,jsx,tsx,mdx}",
-    ],
+        "./styles/**/*.{css,scss}", 
+    ],    
     theme: {
 		 //extending the themes so that we can provide specific variables to use later in code
         extend: {
