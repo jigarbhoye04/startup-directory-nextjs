@@ -25,19 +25,19 @@ export default async function Home({
    return (
       <>
          {/* Hero Section */}
-         <div className="fixed top-0 left-0 right-0 b-gray-100 flex justify-center items-center z-40">
+         {/* <div className="fixed top-0 left-0 right-0 b-gray-100 flex justify-center items-center z-40">
             <SearchForm query={query} />
-         </div>
+         </div> */}
 
          <section className="pink_container">
             <h1 className="heading">
                Pitch your startup! <br /> Connect with entreprenuers
             </h1>
-
-            <p className="sub-heading !max-w-3xl">
+            <p className="sub-heading max-w-3xl!">
                Submit Ideas, Vote on Pitches, and Get Noticed in Virtual
                Competitions.
             </p>
+            <SearchForm query={query} />
          </section>
 
          {/* Startup Section */}

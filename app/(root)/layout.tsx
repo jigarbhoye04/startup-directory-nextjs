@@ -2,10 +2,10 @@ import Navbar from "../../components/Navbar";
 
 export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main className="font-work-sans">
+    <main className="font-work-sans" suppressHydrationWarning >
       <Navbar />
       {children}
-      <footer className="bg-neutral-900 text-white shadow-sm font-work-sans">
+      <footer className="bg-neutral-900 text-white shadow-xs font-work-sans">
         <div className="container mx-auto px-5 py-8">
           {/* Top Section: Links and Socials */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

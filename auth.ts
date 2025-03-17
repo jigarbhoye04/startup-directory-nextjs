@@ -1,4 +1,6 @@
 import NextAuth from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { Session } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import { AUTHOR_BY_GITHUB_ID_QUERY } from "./sanity/lib/queries";
 import { client } from "./sanity/lib/client";
@@ -8,48 +10,70 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
    providers: [GitHub],
    callbacks: {
       async signIn({
-         user: { name, email, image },
-         profile: { id, login, bio },
-      }) {
-         const existingUser = await client.withConfig({useCdn:false}).fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
-            id: id,
-         });
+         user,
+         profile,
+      }: {
+         user: { name: string; email: string; image: string };
+         profile: { id: string; login: string; bio: string };
+      }): Promise<boolean> {
+         const existingUser = await client
+            .withConfig({ useCdn: false })
+            .fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
+               id: profile.id,
+            });
 
          if (!existingUser) {
             await writeClient.create({
                _type: "author",
-               id: id,
-               name: name,
-               username: login,
-               email: email,
-               image: image,
-               bio: bio || "",
+               id: profile.id,
+               name: user.name,
+               username: profile.login,
+               email: user.email,
+               image: user.image,
+               bio: profile.bio || "",
             });
          }
 
-         if (existingUser) {
-            return true;
-         }
+         return !!existingUser;
       },
-      
-      //this allows us to connect github user with a sanity author which can then create a startup
-      async jwt({ token, account, profile }) {
+
+      async jwt({
+         token,
+         account,
+         profile,
+      }: {
+         token: JWT;
+         account?: Record<string, unknown>;
+         profile?: { id: string };
+      }): Promise<JWT> {
          if (account && profile) {
-            const user = await client.withConfig({useCdn:false}).fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
-               id: profile?.id,
-            });
+            const user = await client
+               .withConfig({ useCdn: false })
+               .fetch(AUTHOR_BY_GITHUB_ID_QUERY, {
+                  id: profile.id,
+               });
+
+            if (!user) {
+               console.error(`No user found with GitHub ID: ${profile.id}`);
+               return token; // Return the token without modifying it
+            }
 
             token.id = user._id;
+         } else {
+            console.error("Account or profile is undefined.");
          }
          return token;
       },
 
-      //session = we get access to a session and a token and we need to pass profile id from token to session
-      async session({session,token}){
-        Object.assign(session,{id:token.id});
-        return session;
-      }
+      async session({
+         session,
+         token,
+      }: {
+         session: Session;
+         token: JWT;
+      }): Promise<Session> {
+         Object.assign(session, { id: token.id });
+         return session;
+      },
    },
 });
-
-//callbacks-this will be called when the user signs in(authenticated)

@@ -50,7 +50,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
          <section className="startup_id_container">
             <p className="tag">{formatDate(post?._createdAt)}</p>
             <h1 className="heading">{post.title}</h1>
-            <p className="sub-heading !max-w-5xl">{post.description}</p>
+            <p className="sub-heading max-w-5xl!">{post.description}</p>
          </section>
 
          <section className="section_container">
@@ -74,7 +74,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                      />
                      <div>
                         <p className="text-20-medium">{post.author.name}</p>
-                        <p className="text-20-medium !text-black-300">
+                        <p className="text-20-medium text-black-300!">
                            @{post.author.username}
                         </p>
                      </div>

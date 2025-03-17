@@ -10,7 +10,7 @@ const Navbar = async () => {
    const session = await auth();
 
    return (
-      <div className="flex fixed w-full px-5 py-3 bg-neutral-900 shadow-sm font-work-sans text-white z-40 justify-between items-center">
+      <div className="flex fixed w-full px-5 py-3 bg-neutral-900 shadow-xs font-work-sans text-white z-40 justify-between items-center">
          <nav className="flex justify-between items-center w-full">
             {/* Logo on the left */}
             <Link href="/">
