@@ -8,7 +8,7 @@ The application is built with **Next.js** using the App Router and integrates wi
 
 ## Features
 
-- **User Authentication**: Secure login and profile management.
+- **User Authentication**: Secure login via GitHub OAuth.
 - **Startup Submission**: Submit startup pitches with markdown support.
 - **Search and Filter**: Search for startups by name or category.
 - **Live Updates**: Real-time content updates using Sanity's live content API.
@@ -16,12 +16,13 @@ The application is built with **Next.js** using the App Router and integrates wi
 
 ## Technologies Used
 
-- [Next.js](https://nextjs.org/) 15.1.0
+- [Next.js](https://nextjs.org/) 15.5.6
 - [React](https://reactjs.org/) 19
 - [TypeScript](https://www.typescriptlang.org/) 5
-- [Sanity.io](https://www.sanity.io/) for CMS
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [EasyMDE](https://github.com/Ionaru/easy-markdown-editor) for markdown editing
+- [Sanity.io](https://www.sanity.io/) v3 for CMS
+- [Tailwind CSS](https://tailwindcss.com/) v4 for styling
+- [NextAuth.js](https://next-auth.js.org/) v5 for authentication
+- [Sentry](https://sentry.io/) for error tracking
 - [Lucide React](https://lucide.dev/) for icons
 
 ## Getting Started
@@ -29,35 +30,48 @@ The application is built with **Next.js** using the App Router and integrates wi
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) >= 18
-- [npm](https://www.npmjs.com/) >= 8
+- [npm](https://www.npmjs.com/) >= 11
 
 ### Installation
 
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/pitch-perfect.git
-   cd pitch-perfect
+   git clone https://github.com/yourusername/startup-directory-nextjs.git
+   cd startup-directory-nextjs
+   ```
 
 2. **Install dependencies**:
 
    ```bash
    npm install
+   ```
 
 3. **Setup Environment Variables**:
 
-   Create a `.env.local` file in the root directory and add the following:
+   Create a `.env.local` file in the root directory based on `.env.example`:
 
    ```bash
-    AUTH_SECRET="" 
-    AUTH_GITHUB_ID=""
-    AUTH_GITHUB_SECRET=""
-    NEXT_PUBLIC_SANITY_PROJECT_ID=""
-    NEXT_PUBLIC_SANITY_DATASET=""
-    NEXT_PUBLIC_SANITY_API_VERSION=""
+   cp .env.example .env.local
    ```
-    Replace `env variable` with your actual Data.
 
+   Then update the values in `.env.local`:
+
+   ```bash
+   # Authentication
+   AUTH_SECRET="your-secret-here" 
+   AUTH_GITHUB_ID="your-github-oauth-app-id"
+   AUTH_GITHUB_SECRET="your-github-oauth-app-secret"
+   
+   # Sanity CMS
+   NEXT_PUBLIC_SANITY_PROJECT_ID="your-sanity-project-id"
+   NEXT_PUBLIC_SANITY_DATASET="production"
+   NEXT_PUBLIC_SANITY_API_VERSION="2024-01-01"
+   SANITY_WRITE_TOKEN="your-sanity-write-token"
+   
+   # Sentry (Optional)
+   SENTRY_AUTH_TOKEN="your-sentry-auth-token"
+   ```
 
 4. **Running the Application:**
 
@@ -87,9 +101,9 @@ The application is built with **Next.js** using the App Router and integrates wi
    - `app/`: Next.js App Router pages and layouts.
    - `components/`: Reusable UI components.
    - `sanity/`: Sanity schema definitions and configuration.
+   - `lib/`: Utility functions and server actions.
    - `public/`: Static assets.
-   - `styles/`: Global CSS files.
-   - `utils/`: Utility functions and helpers.
+   - `hooks/`: Custom React hooks.
 
 6. **Scripts:**
 
@@ -97,7 +111,6 @@ The application is built with **Next.js** using the App Router and integrates wi
    - `build`: Builds the application for production.
    - `start`: Runs the production server.
    - `lint`: Runs ESLint checks.
-   - `sanity`: Starts the Sanity Studio.
    - `typegen`: Generates TypeScript types from Sanity schemas.
 
 7. **Dependencies:**
@@ -106,9 +119,11 @@ The application is built with **Next.js** using the App Router and integrates wi
 
    - **Next.js**: Framework for server-rendered React applications.
    - **Sanity.io**: Headless CMS for content management.
+   - **NextAuth.js**: Authentication library for Next.js.
    - **Tailwind CSS**: Utility-first CSS framework.
-   - **EasyMDE**: Markdown editor component.
+   - **Zod**: TypeScript-first schema validation.
    - **Lucide React**: Icon library.
+   - **Sentry**: Error tracking and performance monitoring.
    - **ESLint**: Linting utility for JavaScript and TypeScript.
    - **TypeScript**: Superset of JavaScript for static type checking.
 
@@ -141,9 +156,10 @@ The application is built with **Next.js** using the App Router and integrates wi
 
    This project is licensed under the MIT License.
 
-10. **Ref:**
+10. **References:**
 
     - [Next.js Documentation](https://nextjs.org/docs)
     - [Sanity.io Documentation](https://www.sanity.io/docs)
     - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-    - [EasyMDE Documentation](https://github.com/Ionaru/easy-markdown-editor)
+    - [NextAuth.js Documentation](https://next-auth.js.org/)
+

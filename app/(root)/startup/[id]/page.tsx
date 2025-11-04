@@ -2,7 +2,6 @@
 import { formatDate } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
 import {
-   PLAYLIST_BY_SLUG_QUERY,
    STARTUP_BY_ID_QUERY,
 } from "@/sanity/lib/queries";
 import Link from "next/link";
@@ -12,8 +11,6 @@ import Image from "next/image";
 import markdownit from "markdown-it";
 import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
-import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
-import { Star } from "lucide-react";
 
 const md = markdownit();
 
@@ -54,9 +51,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
          </section>
 
          <section className="section_container">
-            <img
+            <Image
                src={post.image}
                alt="thumbnail"
+               width={1200}
+               height={675}
                className="w-full h-auto rounded-xl"
             />
             <div className="space-y-5 mt-10 max-w-5xl mx-auto">

@@ -20,7 +20,10 @@ const StartupForm = () => {
    const router = useRouter();
    const [pitch, setPitch] = useState("");
 
-   const handleSubmit = async (prevState: any, formData: FormData) => {
+   const handleSubmit = async (
+      prevState: { error?: string; status: string; id?: string },
+      formData: FormData
+   ) => {
       try {
          const formValues = {
             title: formData.get("title") as string,
@@ -37,10 +40,11 @@ const StartupForm = () => {
 
          const result = (await createPitch(prevState, formData, pitch)) as {
             status: string;
-            id: string;
+            id?: string;
+            error?: string;
          };
          console.log(result.id);
-         if (result.status === "SUCCESS") {
+         if (result.status === "SUCCESS" && result.id) {
             toast.toast({
                title: "Success",
                description: "Your startup has been submitted successfully",
@@ -85,7 +89,7 @@ const StartupForm = () => {
       }
    };
 
-   const [state, formAction, isPending] = useActionState(handleSubmit, {
+   const [, formAction, isPending] = useActionState(handleSubmit, {
       error: "",
       status: "initial",
    });

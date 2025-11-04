@@ -14,7 +14,7 @@ export const formSchema = z.object({
             }else{
                 return false;
             }
-        }catch(e){
+        }catch{
             return false;
         }
     }),

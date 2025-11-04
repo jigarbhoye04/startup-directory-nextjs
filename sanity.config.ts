@@ -8,9 +8,6 @@ import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 
-
-import {markdownSchema} from 'sanity-plugin-markdown'
-
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schemaTypes'
@@ -27,10 +24,5 @@ export default defineConfig({
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
-
-
-    // Markdown is for adding markdown support to studio basically for the markdown field type in the schema types
-    //that we used in the schemaTypes/startup.ts file for the pitch field
-    markdownSchema(),
   ],
 })

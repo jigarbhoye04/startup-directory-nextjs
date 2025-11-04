@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 
 //custom css for easymde editor (specially for the pitch editor)
 import 'easymde/dist/easymde.min.css';
