@@ -6,7 +6,7 @@ import { AUTHOR_BY_GITHUB_ID_QUERY } from "./sanity/lib/queries";
 import { client } from "./sanity/lib/client";
 import { writeClient } from "./sanity/lib/write-client";
 
-// @ts-expect-error - next-auth v5 beta type issue with Next.js bundler
+// @ts-expect-error - TypeScript incorrectly resolves NextAuth as module namespace instead of default export (next-auth@5.0.0-beta.30 issue)
 export const { handlers, auth, signIn, signOut } = NextAuth({
    providers: [GitHub],
    callbacks: {
