@@ -15,10 +15,17 @@
                defaultValue={query}
                className="search-input"
                placeholder="Search for startups"
+               aria-label="Search startups"
+               type="search"
             />
             <div className="flex gap-2">
                {query && <SearchFormReset />}
-               <button type="submit" className="search-btn text-white">
+               <button
+                  type="submit"
+                  className="search-btn text-white"
+                  aria-label="Submit search"
+                  title="Search"
+               >
                   <Search size={16} />
                </button>
             </div>

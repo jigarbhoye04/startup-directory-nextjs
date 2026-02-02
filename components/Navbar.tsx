@@ -9,8 +9,8 @@ const Navbar = async () => {
    const session = await auth();
 
    return (
-      <div className="flex fixed w-full px-5 py-3 bg-neutral-900 shadow-xs font-work-sans text-white z-40 justify-between items-center">
-         <nav className="flex justify-between items-center w-full">
+      <div className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-neutral-900/90 backdrop-blur">
+         <nav className="flex justify-between items-center w-full px-5 py-3 font-work-sans text-white">
             {/* Logo on the left */}
             <Link href="/">
                <div className="flex items-center space-x-2">
@@ -25,10 +25,13 @@ const Navbar = async () => {
             </Link>
 
             {/* Everything aligned to the right */}
-            <div className="flex items-center space-x-5 ml-auto">
+            <div className="flex items-center space-x-4 ml-auto">
                {session && session?.user ? (
                   <>
-                     <Link href="/startup/create">
+                     <Link
+                        href="/startup/create"
+                        className="flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-sm font-medium transition hover:bg-white/10"
+                     >
                         <span className="max-sm:hidden">Create</span>
                         <BadgePlus className="size-6 sm:hidden" />
                      </Link>
@@ -38,9 +41,12 @@ const Navbar = async () => {
                            await signOut({ redirectTo: "/" });
                         }}
                      >
-                        <button type="submit">
+                        <button
+                           type="submit"
+                           className="flex items-center gap-2 rounded-full border border-white/20 px-3 py-1.5 text-sm font-medium transition hover:bg-white/10"
+                        >
                            <span className="max-sm:hidden">Logout</span>
-                           <LogOut className="mt-2 size-6 sm:hidden text-red-500" />
+                           <LogOut className="size-5 sm:hidden text-red-400" />
                         </button>
                      </form>
 
@@ -63,7 +69,7 @@ const Navbar = async () => {
                         await signIn("github");
                      }}
                   >
-                     <button type="submit">
+                     <button type="submit" className="login text-sm">
                         <span>Login</span>
                      </button>
                   </form>
