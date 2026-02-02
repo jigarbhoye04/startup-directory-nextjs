@@ -13,7 +13,10 @@ export default async function Home({
    const params = { search: query || null };
 
    // const posts = await client.fetch(STARTUPS_QUERY);
-   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
+   const { data: posts } = await sanityFetch<StartupTypeCard[]>({
+      query: STARTUPS_QUERY,
+      params,
+   });
    //this is a promise, so we need to await it to get the data immediately
    //revalidates data whenever the data changes
 

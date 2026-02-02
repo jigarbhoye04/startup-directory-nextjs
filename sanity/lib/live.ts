@@ -15,13 +15,21 @@
 
 
 import "server-only";
-import { defineLive } from "next-sanity";
-import { client } from './client'
+import type { QueryParams } from "@sanity/client";
+import { client } from "./client";
 
-export const { sanityFetch, SanityLive } = defineLive({
-  client: client.withConfig({
-    apiVersion: 'vX'
-  })
-});
+type SanityFetchParams = {
+  query: string;
+  params?: QueryParams;
+};
+
+export const sanityFetch = async <T>({ query, params }: SanityFetchParams) => {
+  const data = params
+    ? await client.fetch<T>(query, params)
+    : await client.fetch<T>(query);
+  return { data };
+};
+
+export const SanityLive = () => null;
 
 // The "server-only" pragma tells Vercel to only include this module in the server build and not the client build.
